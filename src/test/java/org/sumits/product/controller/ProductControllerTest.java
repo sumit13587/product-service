@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -34,9 +35,9 @@ class ProductControllerTest {
 
     @Test
     void listProducts() {
-        when(mockProductService.listAllProducts()).thenReturn(stubList());
-        assertEquals(10, classUnderTest.listProducts().size());
-        verify(mockProductService).listAllProducts();
+        when(mockProductService.listAllProducts(anyString())).thenReturn(stubList());
+        assertEquals(10, classUnderTest.listProducts("USD").size());
+        verify(mockProductService).listAllProducts("USD");
     }
 
     private List<Product> stubList() {

@@ -1,5 +1,7 @@
 package org.sumits.product.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,8 +19,11 @@ public class Product {
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @Column(name = "price")
     private double price;
+
+    private String displayPrice;
 
     public long getId() {
         return id;
@@ -50,5 +55,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDisplayPrice() {
+        return displayPrice;
+    }
+
+    public void setDisplayPrice(String displayPrice) {
+        this.displayPrice = displayPrice;
     }
 }
